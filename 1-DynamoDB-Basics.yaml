@@ -1,0 +1,112 @@
+### DynamoDB is a fully managed NoSQL database service for applications that need single digit latency at any scale.
+
+- DynamoDB supports both Document and KeyValue data models
+- This flexible data model works well with many use cases such as:
+- --Mobile
+- --Web
+- --Gaming
+- --Iot
+- --Live Online Voting
+- --Session Management
+- --Store S3 object metadata
+
+### Serverless
+- DynamoDB is serverless so it is scalable with no servers to manage
+
+- No limit on table size or amount of bytes in a table
+
+- Runs on SSD which allows it to achieve millisecond latency
+
+- Fully resilient, highly available and fault tolerant because the data is replicated across 3 geographically unique datacenters
+
+- Data is accessed via an HTTP endpoint, so datacenter failures will be transparent to your app
+
+- DynamoDB's performance scales in a linear way, versus a scaled/tierd manor if you were adding EC2 servers to an RDS DB
+
+- You specify how many reads and writes you want on a table per second and DynamoDB handles the rest
+
+- DynamoDB is fully integrated with IAM - so you can control granular access and security
+
+### Regions
+- DynamoDB is a collection of tables in each region - the services namespace is at the region level.
+
+- Availability Zones are not important when dealing with DynamoDB
+
+### Tables
+- Tables are at the highest level structure within a Database
+
+- It is on tables that you specify your performance requirements
+
+- Performance units - you specify the amount of reads and writes that you want on each table - if you go above these units, you become throttled
+
+###Write Capability Units
+- 1 WCU - write capacity units, the number of 1KB blocks per second to your table
+- -- 2 WCU would equal 2KB blocks per second
+- -- 3 WCU would equal 3KB blocks per second
+
+###Read Capability Units
+- 1 RCU - read capacity units, the number of 1KB blocks per second to your table
+- -- 2 RCU would equal 8KB blocks per second
+- -- 3 RCU would equal 3KB blocks per second
+
+### DynamoDB supports eventually consistent reads
+- DynamoDB is a distributed system, when you write to a table you are writing to multiple locations at one time
+- Remember? - DynamoDB data is replicated across 3 distinct datacenters
+
+- When you make a write to DynamoDB it is only acknowledged, at the point that 2 datacenters have responded w/ a confirmed write
+
+- There is a small chance that a read will not show updated write of data if it's partially complete
+
+### Strongly consistent reads
+- Strongly consistent reads use 1 read unit per 4kb block whereas eventually consistent reads use .5 units per 4kb block
+- You get better performance with strongly consistent reads, but it does cost more
+
+###Billing
+- Billing in DynamoDB is done based on the number of WCU's, RCU's and amount of data stored
+
+### Partition - Basics
+- Kind of like an underlying server, that can coupe with a certain level of Read / Write Capacity Units and store a certain amount of data
+
+### Tables - Basics
+- A table is made up of items (these are like excel rows)
+- Each item contains a number of elements
+- An item can contain a different number of elements
+- Each item can contain a different number of elements or different types of elements
+- The individual elements are attributes
+
+- Partition Key / Hash key is a special attribute - that has to be unique in the table in order to identify an item
+
+- Sort Key - used when each occurrence of a partition key, you have multiple data items
+
+### Data Types
+- 2 types of data types
+- --Scalar
+- --DynamoDB
+
+### Attribute types
+- --String "Hello"
+- --Number 123
+- --Binary
+- --Boolean true false
+- --Null
+- --Document (List/Map) - JSON
+- --Set ["Red", "Green", "Blue"]
+
+### DynamoDB & Redshift
+- Using the copy command in redshift you can copy data directly from Dynamo to Redshift
+
+### DynamoDB & EMR
+- DynamoDB is integrated with Apache Hive, by using Hive on EMR you can read and write data in DynamoDB tables
+- This allows you to query DynamoDB data with a SQL like language
+- You can copy data from DynamoDB to an S3 bucket
+- You can copy data from DynamoDB to HDFS
+- And you can perform JOIN operations on DynamoDB tables
+
+### DynamoDB & Data Pipeline
+- You can move / copy data to and from DynamoDB to S3
+
+### DynamoDB  & Lambda
+- DynamoDB is integrated with Lambda so that you can create triggers
+
+### Kinesis & DynamoDB
+- You can collect data from Kinesis and store it directly into DynamoDB
